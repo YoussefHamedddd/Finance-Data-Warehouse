@@ -1,0 +1,23 @@
+[2026-02-01T04:02:02.207+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: financial_full_pipeline.dbt_run_silver manual__2026-02-01T03:43:37.275621+00:00 [queued]>
+[2026-02-01T04:02:02.223+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: financial_full_pipeline.dbt_run_silver manual__2026-02-01T03:43:37.275621+00:00 [queued]>
+[2026-02-01T04:02:02.224+0000] {taskinstance.py:1361} INFO - Starting attempt 2 of 2
+[2026-02-01T04:02:02.246+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): dbt_run_silver> on 2026-02-01 03:43:37.275621+00:00
+[2026-02-01T04:02:02.254+0000] {standard_task_runner.py:57} INFO - Started process 2153 to run task
+[2026-02-01T04:02:02.260+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'financial_full_pipeline', 'dbt_run_silver', 'manual__2026-02-01T03:43:37.275621+00:00', '--job-id', '54', '--raw', '--subdir', 'DAGS_FOLDER/financial_DWH.py', '--cfg-path', '/tmp/tmptyf5w1wv']
+[2026-02-01T04:02:02.265+0000] {standard_task_runner.py:85} INFO - Job 54: Subtask dbt_run_silver
+[2026-02-01T04:02:02.399+0000] {task_command.py:416} INFO - Running <TaskInstance: financial_full_pipeline.dbt_run_silver manual__2026-02-01T03:43:37.275621+00:00 [running]> on host d4461f48c063
+[2026-02-01T04:02:02.637+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='youssef' AIRFLOW_CTX_DAG_ID='financial_full_pipeline' AIRFLOW_CTX_TASK_ID='dbt_run_silver' AIRFLOW_CTX_EXECUTION_DATE='2026-02-01T03:43:37.275621+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-01T03:43:37.275621+00:00'
+[2026-02-01T04:02:02.641+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-02-01T04:02:02.643+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'cd /opt/***/dags/my_analysis && dbt run --select path:models/silver']
+[2026-02-01T04:02:02.671+0000] {subprocess.py:86} INFO - Output:
+[2026-02-01T04:02:02.676+0000] {subprocess.py:93} INFO - /bin/bash: line 1: cd: /opt/***/dags/my_analysis: No such file or directory
+[2026-02-01T04:02:02.677+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2026-02-01T04:02:02.738+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-02-01T04:02:02.810+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=financial_full_pipeline, task_id=dbt_run_silver, execution_date=20260201T034337, start_date=20260201T040202, end_date=20260201T040202
+[2026-02-01T04:02:02.948+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 54 for task dbt_run_silver (Bash command failed. The command returned a non-zero exit code 1.; 2153)
+[2026-02-01T04:02:02.997+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2026-02-01T04:02:03.116+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

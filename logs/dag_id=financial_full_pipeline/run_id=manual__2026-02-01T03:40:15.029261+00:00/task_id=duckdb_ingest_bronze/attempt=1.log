@@ -1,0 +1,29 @@
+[2026-02-01T03:40:16.350+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: financial_full_pipeline.duckdb_ingest_bronze manual__2026-02-01T03:40:15.029261+00:00 [queued]>
+[2026-02-01T03:40:16.379+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: financial_full_pipeline.duckdb_ingest_bronze manual__2026-02-01T03:40:15.029261+00:00 [queued]>
+[2026-02-01T03:40:16.380+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2026-02-01T03:40:16.412+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): duckdb_ingest_bronze> on 2026-02-01 03:40:15.029261+00:00
+[2026-02-01T03:40:16.426+0000] {standard_task_runner.py:57} INFO - Started process 1666 to run task
+[2026-02-01T03:40:16.435+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'financial_full_pipeline', 'duckdb_ingest_bronze', 'manual__2026-02-01T03:40:15.029261+00:00', '--job-id', '44', '--raw', '--subdir', 'DAGS_FOLDER/financial_DWH.py', '--cfg-path', '/tmp/tmp5t3ll64s']
+[2026-02-01T03:40:16.441+0000] {standard_task_runner.py:85} INFO - Job 44: Subtask duckdb_ingest_bronze
+[2026-02-01T03:40:16.538+0000] {task_command.py:416} INFO - Running <TaskInstance: financial_full_pipeline.duckdb_ingest_bronze manual__2026-02-01T03:40:15.029261+00:00 [running]> on host d4461f48c063
+[2026-02-01T03:40:16.687+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='youssef' AIRFLOW_CTX_DAG_ID='financial_full_pipeline' AIRFLOW_CTX_TASK_ID='duckdb_ingest_bronze' AIRFLOW_CTX_EXECUTION_DATE='2026-02-01T03:40:15.029261+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-01T03:40:15.029261+00:00'
+[2026-02-01T03:40:16.766+0000] {logging_mixin.py:151} INFO - Starting DuckDB ingestion...
+[2026-02-01T03:40:16.776+0000] {logging_mixin.py:151} INFO - Installing PostgreSQL extension...
+[2026-02-01T03:40:16.988+0000] {logging_mixin.py:151} INFO - Connecting to PostgreSQL: host=host.docker.internal port=5432 dbname=financial_Transactions user=postgres password=12345
+[2026-02-01T03:40:17.045+0000] {logging_mixin.py:151} INFO - ❌ Fatal error in duck_ingest_logic: IO Error: Unable to connect to Postgres at host=host.docker.internal port=5432 dbname=financial_Transactions user=postgres password=12345: could not translate host name "host.docker.internal" to address: Name or service not known
+[2026-02-01T03:40:17.047+0000] {logging_mixin.py:151} INFO - DuckDB connection closed
+[2026-02-01T03:40:17.049+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/financial_DWH.py", line 46, in duck_ingest_logic
+    con.execute(f"ATTACH '{pg_conn_str}' AS pg_db (TYPE POSTGRES);")
+duckdb.duckdb.IOException: IO Error: Unable to connect to Postgres at host=host.docker.internal port=5432 dbname=financial_Transactions user=postgres password=12345: could not translate host name "host.docker.internal" to address: Name or service not known
+
+[2026-02-01T03:40:17.084+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=financial_full_pipeline, task_id=duckdb_ingest_bronze, execution_date=20260201T034015, start_date=20260201T034016, end_date=20260201T034017
+[2026-02-01T03:40:17.143+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 44 for task duckdb_ingest_bronze (IO Error: Unable to connect to Postgres at host=host.docker.internal port=5432 dbname=financial_Transactions user=postgres password=12345: could not translate host name "host.docker.internal" to address: Name or service not known
+; 1666)
+[2026-02-01T03:40:17.217+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2026-02-01T03:40:17.274+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

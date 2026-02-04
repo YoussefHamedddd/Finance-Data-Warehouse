@@ -1,0 +1,50 @@
+[2026-02-01T04:21:18.251+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: financial_full_pipeline.duckdb_ingest_bronze manual__2026-02-01T03:35:28.929847+00:00 [queued]>
+[2026-02-01T04:21:18.265+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: financial_full_pipeline.duckdb_ingest_bronze manual__2026-02-01T03:35:28.929847+00:00 [queued]>
+[2026-02-01T04:21:18.266+0000] {taskinstance.py:1361} INFO - Starting attempt 5 of 6
+[2026-02-01T04:21:18.285+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): duckdb_ingest_bronze> on 2026-02-01 03:35:28.929847+00:00
+[2026-02-01T04:21:18.292+0000] {standard_task_runner.py:57} INFO - Started process 4782 to run task
+[2026-02-01T04:21:18.298+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'financial_full_pipeline', 'duckdb_ingest_bronze', 'manual__2026-02-01T03:35:28.929847+00:00', '--job-id', '55', '--raw', '--subdir', 'DAGS_FOLDER/financial_DWH.py', '--cfg-path', '/tmp/tmpbxhtp66k']
+[2026-02-01T04:21:18.304+0000] {standard_task_runner.py:85} INFO - Job 55: Subtask duckdb_ingest_bronze
+[2026-02-01T04:21:18.440+0000] {task_command.py:416} INFO - Running <TaskInstance: financial_full_pipeline.duckdb_ingest_bronze manual__2026-02-01T03:35:28.929847+00:00 [running]> on host d4461f48c063
+[2026-02-01T04:21:18.572+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='youssef' AIRFLOW_CTX_DAG_ID='financial_full_pipeline' AIRFLOW_CTX_TASK_ID='duckdb_ingest_bronze' AIRFLOW_CTX_EXECUTION_DATE='2026-02-01T03:35:28.929847+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-01T03:35:28.929847+00:00'
+[2026-02-01T04:21:18.617+0000] {logging_mixin.py:151} INFO - Starting DuckDB ingestion...
+[2026-02-01T04:21:18.625+0000] {logging_mixin.py:151} INFO - Installing PostgreSQL extension...
+[2026-02-01T04:21:18.738+0000] {logging_mixin.py:151} INFO - Connecting to PostgreSQL: host=172.28.176.1 port=5432 dbname=financial_Transactions user=postgres password=12345
+[2026-02-01T04:21:18.935+0000] {logging_mixin.py:151} INFO - Creating schema: bronze
+[2026-02-01T04:21:18.940+0000] {logging_mixin.py:151} INFO - ℹSchema bronze already exists, continuing...
+[2026-02-01T04:21:18.940+0000] {logging_mixin.py:151} INFO - Processing users from users_data.csv...
+[2026-02-01T04:21:19.153+0000] {logging_mixin.py:151} INFO - ✅ Successfully loaded users: 2000 rows
+[2026-02-01T04:21:19.153+0000] {logging_mixin.py:151} INFO - Processing cards from cards_data.csv...
+[2026-02-01T04:21:19.258+0000] {logging_mixin.py:151} INFO - ✅ Successfully loaded cards: 6146 rows
+[2026-02-01T04:21:19.258+0000] {logging_mixin.py:151} INFO - Processing mcc_codes from mcc_codes.json...
+[2026-02-01T04:21:19.269+0000] {logging_mixin.py:151} INFO - ✅ Successfully loaded mcc_codes: 109 rows
+[2026-02-01T04:21:19.270+0000] {logging_mixin.py:151} INFO - Processing fraud_labels from train_fraud_labels.json...
+[2026-02-01T04:21:19.274+0000] {logging_mixin.py:151} INFO - JSONL file already exists: /opt/***/dags/data/train_fraud_labels.jsonl
+[2026-02-01T04:22:11.175+0000] {logging_mixin.py:151} INFO - ✅ Successfully loaded fraud_labels: 185000 rows
+[2026-02-01T04:22:11.176+0000] {logging_mixin.py:151} INFO - Processing transactions from transactions_data.csv...
+[2026-02-01T04:23:29.002+0000] {local_task_job_runner.py:294} WARNING - State of this instance has been externally set to success. Terminating instance.
+[2026-02-01T04:23:29.020+0000] {process_utils.py:131} INFO - Sending 15 to group 4782. PIDs of all processes in the group: [4782]
+[2026-02-01T04:23:29.022+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 4782
+[2026-02-01T04:23:29.163+0000] {taskinstance.py:1632} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-02-01T04:23:29.177+0000] {logging_mixin.py:151} INFO - ❌ Error processing transactions: Query interrupted
+[2026-02-01T04:23:29.178+0000] {logging_mixin.py:151} INFO - ❌ Fatal error in duck_ingest_logic: Query interrupted
+[2026-02-01T04:23:29.648+0000] {logging_mixin.py:151} INFO - DuckDB connection closed
+[2026-02-01T04:23:29.649+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 1634, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/financial_DWH.py", line 106, in duck_ingest_logic
+    con.execute(f"""
+RuntimeError: Query interrupted
+[2026-02-01T04:23:29.687+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=financial_full_pipeline, task_id=duckdb_ingest_bronze, execution_date=20260201T033528, start_date=20260201T042118, end_date=20260201T042329
+[2026-02-01T04:23:29.716+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 55 for task duckdb_ingest_bronze (Query interrupted; 4782)
+[2026-02-01T04:23:29.752+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=4782, status='terminated', exitcode=1, started='04:21:17') (4782) terminated with exit code 1

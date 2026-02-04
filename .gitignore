@@ -1,0 +1,7 @@
+# Ignore everything in dags/data/
+dags/data/
+# Ignore Virtual Environments
+venv/
+my_analysis/venv/
+# Ignore CSVs
+*.csv

@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: bronze_data
+    schema: bronze
+    tables:
+      - name: cards            
+      - name: fraud_labels 
+      - name: users
+      - name: transactions
+      - name: mcc_codes

@@ -1,0 +1,44 @@
+[2026-02-01T03:43:39.557+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: financial_full_pipeline.duckdb_ingest_bronze manual__2026-02-01T03:43:37.275621+00:00 [queued]>
+[2026-02-01T03:43:39.601+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: financial_full_pipeline.duckdb_ingest_bronze manual__2026-02-01T03:43:37.275621+00:00 [queued]>
+[2026-02-01T03:43:39.602+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2026-02-01T03:43:49.261+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): duckdb_ingest_bronze> on 2026-02-01 03:43:37.275621+00:00
+[2026-02-01T03:43:49.278+0000] {standard_task_runner.py:57} INFO - Started process 1857 to run task
+[2026-02-01T03:43:49.283+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'financial_full_pipeline', 'duckdb_ingest_bronze', 'manual__2026-02-01T03:43:37.275621+00:00', '--job-id', '48', '--raw', '--subdir', 'DAGS_FOLDER/financial_DWH.py', '--cfg-path', '/tmp/tmp_kwwxiz3']
+[2026-02-01T03:43:49.298+0000] {standard_task_runner.py:85} INFO - Job 48: Subtask duckdb_ingest_bronze
+[2026-02-01T03:43:49.501+0000] {task_command.py:416} INFO - Running <TaskInstance: financial_full_pipeline.duckdb_ingest_bronze manual__2026-02-01T03:43:37.275621+00:00 [running]> on host d4461f48c063
+[2026-02-01T03:43:49.951+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='youssef' AIRFLOW_CTX_DAG_ID='financial_full_pipeline' AIRFLOW_CTX_TASK_ID='duckdb_ingest_bronze' AIRFLOW_CTX_EXECUTION_DATE='2026-02-01T03:43:37.275621+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-01T03:43:37.275621+00:00'
+[2026-02-01T03:43:50.086+0000] {logging_mixin.py:151} INFO - Starting DuckDB ingestion...
+[2026-02-01T03:43:50.103+0000] {logging_mixin.py:151} INFO - Installing PostgreSQL extension...
+[2026-02-01T03:43:50.394+0000] {logging_mixin.py:151} INFO - Connecting to PostgreSQL: host=172.28.176.1 port=5432 dbname=financial_Transactions user=postgres password=12345
+[2026-02-01T03:43:50.566+0000] {logging_mixin.py:151} INFO - Creating schema: bronze
+[2026-02-01T03:43:50.570+0000] {logging_mixin.py:151} INFO - ℹSchema bronze already exists, continuing...
+[2026-02-01T03:43:50.581+0000] {logging_mixin.py:151} INFO - Processing users from users_data.csv...
+[2026-02-01T03:43:51.205+0000] {logging_mixin.py:151} INFO - ✅ Successfully loaded users: 2000 rows
+[2026-02-01T03:43:51.205+0000] {logging_mixin.py:151} INFO - Processing cards from cards_data.csv...
+[2026-02-01T03:43:51.519+0000] {logging_mixin.py:151} INFO - ✅ Successfully loaded cards: 6146 rows
+[2026-02-01T03:43:51.519+0000] {logging_mixin.py:151} INFO - Processing mcc_codes from mcc_codes.json...
+[2026-02-01T03:43:51.549+0000] {logging_mixin.py:151} INFO - ✅ Successfully loaded mcc_codes: 109 rows
+[2026-02-01T03:43:51.549+0000] {logging_mixin.py:151} INFO - Processing fraud_labels from train_fraud_labels.json...
+[2026-02-01T03:43:51.568+0000] {logging_mixin.py:151} INFO - JSONL file already exists: /opt/***/dags/data/train_fraud_labels.jsonl
+[2026-02-01T03:43:56.038+0000] {logging_mixin.py:151} INFO - ❌ Error processing fraud_labels: Invalid Error: Failed to execute query "CREATE TABLE "bronze"."fraud_labels"(id BIGINT, "value" VARCHAR);": ERROR:  duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+DETAIL:  Key (typname, typnamespace)=(fraud_labels, 19190) already exists.
+[2026-02-01T03:43:56.039+0000] {logging_mixin.py:151} INFO - ❌ Fatal error in duck_ingest_logic: Invalid Error: Failed to execute query "CREATE TABLE "bronze"."fraud_labels"(id BIGINT, "value" VARCHAR);": ERROR:  duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+DETAIL:  Key (typname, typnamespace)=(fraud_labels, 19190) already exists.
+[2026-02-01T03:43:56.042+0000] {logging_mixin.py:151} INFO - DuckDB connection closed
+[2026-02-01T03:43:56.051+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/financial_DWH.py", line 83, in duck_ingest_logic
+    con.execute(f"""
+duckdb.duckdb.Error: Invalid Error: Failed to execute query "CREATE TABLE "bronze"."fraud_labels"(id BIGINT, "value" VARCHAR);": ERROR:  duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+DETAIL:  Key (typname, typnamespace)=(fraud_labels, 19190) already exists.
+
+[2026-02-01T03:43:56.109+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=financial_full_pipeline, task_id=duckdb_ingest_bronze, execution_date=20260201T034337, start_date=20260201T034339, end_date=20260201T034356
+[2026-02-01T03:43:56.169+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 48 for task duckdb_ingest_bronze (Invalid Error: Failed to execute query "CREATE TABLE "bronze"."fraud_labels"(id BIGINT, "value" VARCHAR);": ERROR:  duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+DETAIL:  Key (typname, typnamespace)=(fraud_labels, 19190) already exists.
+; 1857)
+[2026-02-01T03:43:56.220+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2026-02-01T03:43:56.352+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: transactions
+    description: "Cleaned transaction data with normalized geography and zip codes."
+    columns:
+      - name: transaction_id
+        tests:
+          - unique
+          - not_null
+
+      - name: amount_usd
+        tests:
+          - not_null
+
+      - name: merchant_country
+        description: "Checks if we handled Online and International countries correctly"
+        tests:
+          - not_null
+          - accepted_values:
+              # This ensures no weird values entered except the ones we handled
+              values: ['USA', 'E-Commerce', 'Unknown', 'Egypt', 'Mexico', 'Norway', 'Italy', 'Singapore']
+              quote: true
+              # Note: You can add more countries as they appear in your data
+
+      - name: zip_code
+        description: "Validates our professional zip code logic"
+        tests:
+          - not_null # Should never be null because we used 'Missing'
+          - dbt_utils.expression_is_true:
+              expression: "length(zip_code) >= 5 or zip_code = 'Missing'"
+
+      - name: us_state_code
+        description: "Ensures US states are exactly 2 characters"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "length(us_state_code) = 2 or us_state_code IS NULL"
