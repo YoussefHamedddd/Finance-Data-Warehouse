@@ -2,7 +2,7 @@
 > *"Turning 22.2 Million Raw Transactions into Actionable Financial Guard-Rails"*
 
 ## 🏗️ 1. Project Design & Architecture
-![Project Design](حط_رابط_صورة_الـ_Design_هنا)
+![Project Design](https://github.com/YoussefHamedddd/Finance-Data-Warehouse/blob/main/docs/Project%20Design.png?raw=true)
 
 **Overview:**
 The system is built on a scalable pipeline that ensures data integrity from ingestion to visualization. It follows the **Medallion Architecture** (Bronze, Silver, Gold) to transform 22.2M raw records into a clean, analytical format.
@@ -15,7 +15,7 @@ The system is built on a scalable pipeline that ensures data integrity from inge
 ---
 
 ## ⚙️ 2. Data Pipeline & Orchestration (Airflow)
-![Airflow DAG](حط_رابط_صورة_الـ_Airflow_هنا)
+![Airflow DAG](https://github.com/YoussefHamedddd/Finance-Data-Warehouse/blob/main/docs/AirflowDags.png?raw=true)
 
 **Orchestration Details:**
 I utilized **Apache Airflow** within a **Docker** environment to automate the entire ETL process.
@@ -27,7 +27,7 @@ I utilized **Apache Airflow** within a **Docker** environment to automate the en
 ---
 
 ## 📐 3. Data Modeling (Star Schema)
-![Star Schema](حط_رابط_صورة_الـ_Schema_هنا)
+![Star Schema](https://github.com/YoussefHamedddd/Finance-Data-Warehouse/blob/main/docs/Star%20Schema.png?raw=true)
 
 **Modeling Strategy:**
 To ensure high-speed analytical queries, the warehouse is organized into a **Star Schema**.
@@ -37,7 +37,7 @@ To ensure high-speed analytical queries, the warehouse is organized into a **Sta
 ---
 
 ## 📊 4. Business Intelligence & Dashboards
-![Overview Dashboard](حط_رابط_صورة_الـ_Dashboard_هنا)
+![Overview Dashboard](https://github.com/YoussefHamedddd/Finance-Data-Warehouse/blob/main/Dashboard%20Photos/Overview.png?raw=true)
 
 **Fraud-Centric Analytics (The Core):**
 My primary focus was to unmask fraudulent patterns across the dataset using three pillars:
