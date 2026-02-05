@@ -47,9 +47,19 @@ My primary focus was to unmask fraudulent patterns across the dataset using thre
 
 > **Key Finding:** Despite a "small" 0.1% fraud rate, at this scale, it represents **$500k+ in potential losses**, proving the necessity of this robust pipeline.
 
+## 🧠 5. User Behavior & Fraud Insights
+![User Behavior Chart](https://github.com/YoussefHamedddd/Finance-Data-Warehouse/blob/main/Dashboard%20Photos/User%20Behvior.png?raw=true)
+
+**The Discovery:**
+Beyond the engineering metrics, the data revealed a critical behavioral pattern:
+* **Targeted Vulnerability:** Fraudulent activities are heavily concentrated among **lower-income brackets**. 
+* **The Evidence:** My "Income vs. Spending" analysis shows dense clusters of fraud (red points) in lower-income segments.
+* **Proactive Protection:** By identifying these high-risk user clusters, financial institutions can implement targeted security measures before theft occurs.
+
+---
 ---
 
-## 💡 5. Final Takeaway
+## 💡 6. Final Takeaway
 Engineering is not just about making things work; it's about **optimization and strategic decision-making**. Choosing DuckDB over Pandas wasn't just a technical fix—it was a business-driven decision to reduce costs and processing time.
 
 ---
