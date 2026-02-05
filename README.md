@@ -1,0 +1,71 @@
+# 🛡️ FinGuard 22M: End-to-End Scalable Data Warehouse
+> *"Turning 22.2 Million Raw Transactions into Actionable Financial Guard-Rails"*
+
+## 🏗️ 1. Project Design & Architecture
+![Project Design](حط_رابط_صورة_الـ_Design_هنا)
+
+**Overview:**
+The system is built on a scalable pipeline that ensures data integrity from ingestion to visualization. It follows the **Medallion Architecture** (Bronze, Silver, Gold) to transform 22.2M raw records into a clean, analytical format.
+
+**The Engineering Journey:**
+* **The Pandas Struggle:** Initially, I used Pandas for extraction, but it crashed due to the massive 22M+ row volume.
+* **JSON Optimization:** I implemented flattening strategies for massive, nested JSON files to prevent memory bottlenecks.
+* **The DuckDB Solution:** I migrated to **DuckDB** to optimize the Load phase, achieving lightning-fast transfers and minimal memory consumption.
+
+---
+
+## ⚙️ 2. Data Pipeline & Orchestration (Airflow)
+![Airflow DAG](حط_رابط_صورة_الـ_Airflow_هنا)
+
+**Orchestration Details:**
+I utilized **Apache Airflow** within a **Docker** environment to automate the entire ETL process.
+* **Extraction:** Multi-source ingestion from 3 CSVs and 2 JSONs.
+* **Bronze Layer:** Raw data landing via DuckDB/Python.
+* **Silver Layer:** Hardcore data cleansing and standardization using **dbt**.
+* **Gold Layer:** Final transformation into a high-performance analytics layer.
+
+---
+
+## 📐 3. Data Modeling (Star Schema)
+![Star Schema](حط_رابط_صورة_الـ_Schema_هنا)
+
+**Modeling Strategy:**
+To ensure high-speed analytical queries, the warehouse is organized into a **Star Schema**.
+* **Fact Table:** Centralized transaction records (22.2M rows).
+* **Dimension Tables:** Dedicated tables for **Users** and **Cards**, allowing for efficient filtering and complex joins without compromising performance.
+
+---
+
+## 📊 4. Business Intelligence & Dashboards
+![Overview Dashboard](حط_رابط_صورة_الـ_Dashboard_هنا)
+
+**Fraud-Centric Analytics (The Core):**
+My primary focus was to unmask fraudulent patterns across the dataset using three pillars:
+1.  **Risk Quantification:** Using the **0.1% Fraud Ratio** as a primary KPI for immediate health checks.
+2.  **Geospatial Analysis:** Mapping transactions to identify high-risk geographic clusters.
+3.  **Spending Correlation:** Analyzing the **$571.8M total spending** to spot suspicious spikes.
+
+> **Key Finding:** Despite a "small" 0.1% fraud rate, at this scale, it represents **$500k+ in potential losses**, proving the necessity of this robust pipeline.
+
+---
+
+## 💡 5. Final Takeaway
+Engineering is not just about making things work; it's about **optimization and strategic decision-making**. Choosing DuckDB over Pandas wasn't just a technical fix—it was a business-driven decision to reduce costs and processing time.
+
+---
+
+## 🛠️ Tech Stack
+* **Languages:** Python, SQL
+* **Orchestration:** Apache Airflow
+* **Transformation:** dbt
+* **Database:** PostgreSQL & DuckDB
+* **Containerization:** Docker
+* **Visualization:** Power BI
+* **Environment:** VSCode & WSL
+
+---
+
+## 🤝 Let's Connect!
+I am **open to discussing** this project, architectural choices, or Data Engineering opportunities. 
+
+**GitHub Repository:** [Finance-Data-Warehouse](https://github.com/YoussefHamedddd/Finance-Data-Warehouse.git)
