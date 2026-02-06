@@ -78,4 +78,7 @@ Engineering is not just about making things work; it's about **optimization and 
 ## 🤝 Let's Connect!
 I am **open to discussing** this project, architectural choices, or Data Engineering opportunities. 
 
-**GitHub Repository:** [Finance-Data-Warehouse](https://github.com/YoussefHamedddd/Finance-Data-Warehouse.git)
+## 📊 Data Source
+The dataset used in this project is the **Financial Transactions Dataset for Fraud Detection**, sourced from Kaggle. It contains over 22 million records of financial transactions, including demographic and credit card information.
+
+- **Dataset Link:** [Kaggle - Financial Transactions Dataset](https://www.kaggle.com/datasets/computingvictor/transactions-fraud-datasets)
