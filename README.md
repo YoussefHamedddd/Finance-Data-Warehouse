@@ -45,7 +45,7 @@ My primary focus was to unmask fraudulent patterns across the dataset using thre
 2.  **Geospatial Analysis:** Mapping transactions to identify high-risk geographic clusters.
 3.  **Spending Correlation:** Analyzing the **$571.8M total spending** to spot suspicious spikes.
 
-> **💡 Key Finding:** Despite a "small" **0.1%** fraud rate, at this scale (22M+ records), it represents **$1.4M+ in potential annual losses**. This proves that a robust, automated pipeline isn't just a technical luxury, but a financial necessity.
+**💡 Key Finding:** Despite a "small" **0.1%** fraud rate, at this scale (22M+ records), it represents **$1.4M+ in potential annual losses**. This proves that a robust, automated pipeline isn't just a technical luxury, but a financial necessity.
 
 ## 🧠 5. User Behavior & Fraud Insights
 ![User Behavior Chart](https://github.com/YoussefHamedddd/Finance-Data-Warehouse/blob/main/Dashboard%20Photos/User%20Behvior.png?raw=true)
