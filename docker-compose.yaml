@@ -10,7 +10,7 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
   volumes:
     - ./dags:/opt/airflow/dags
-    - ./my_analysis:/opt/airflow/my_analysis  # الشباك الجديد للـ dbt
+    - ./my_analysis:/opt/airflow/my_analysis 
     - ./logs:/opt/airflow/logs
     
     
